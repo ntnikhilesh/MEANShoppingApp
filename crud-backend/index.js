@@ -10,7 +10,6 @@ var app=express();
 const route=require('./route/routes')
 
 //connect to mongodb
-
 mongoose.connect('mongodb://localhost:27017/shoppinglist');
 
 //on connection
