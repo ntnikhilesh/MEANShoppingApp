@@ -7,6 +7,8 @@ var cors= require('cors')
 
 var app=express();
 
+const route=require('./route/routes')
+
 //connect to mongodb
 
 mongoose.connect('mongodb://localhost:27017/shoppinglist');
@@ -22,6 +24,14 @@ mongoose.connection.on('error',(err)=>{
 });
 
 const PORT=3000;
+
+//adding middleware-cors
+app.use(cors());
+
+//body parser
+app.use(bodyparser.json())
+
+app.use('/api', route);
 
 app.get('/',(req,res)=>{
     res.send('We are live....')
