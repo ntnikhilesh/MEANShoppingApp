@@ -32,13 +32,34 @@ router.post('/add_items',(req,res,next)=>{
 });
 
 //updating the data
-router.put('/put_route',(req,res,next)=>{
-    //to do later
+router.put('/update_item/:id',(req,res,next)=>{
+   Item.findOneAndUpdate({_id:req.params.id},{
+       $set:{
+        itemName:req.body.itemName,
+        itemQuantity:req.body.itemQuantity,
+        itemBought:req.body.itemBought
+       }
+   },
+   function(err,result){
+    if(err){
+        res.json(err);
+    }else{
+        res.json({msg:'Item has been updated  successfully'});
+    }
+   }
+)
 })
 
 //delete the data
-router.get('/delete_route',(req,res,next)=>{
-     //to do later
+router.delete('/delete_item/:id',(req,res,next)=>{
+     Item.remove({_id:req.params.id},function(err,result){
+        if(err){
+            res.json(err);
+        }else{
+            res.json({msg:'Item has been deleted  successfully',
+            result:result});
+        } 
+     })
 })
 
 module.exports=router;
