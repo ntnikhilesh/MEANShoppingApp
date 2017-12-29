@@ -16,7 +16,7 @@ export class DataServiceService {
   addShoppingItems(newItem){
     let headers=new Headers();
     headers.append('Content-Type','application/json')
-    return this.http.post('http://localhost:3000/api/add_item',newItem,{headers:headers})
+    return this.http.post('http://localhost:3000/api/add_items',newItem,{headers:headers})
     .map(res=>res.json());
   }
 }

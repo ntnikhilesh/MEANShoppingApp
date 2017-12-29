@@ -8,12 +8,28 @@ import {DataServiceService} from '../data-service.service'
   styleUrls: ['./shopping-item.component.css']
 })
 export class ShoppingItemComponent implements OnInit {
-  shoppingItemList:Item[]=[];
+  
+  //shoppingItemList:Item[]=[];
+  shoppingItemList:any;
   constructor(private dataService:DataServiceService) { }
 
 
   ngOnInit() {
     this.getItems()
+  }
+
+  addItem(form){
+    console.log(form.value)
+    let obj={};
+    obj['itemName']=form.value.itemName;
+    obj['itemQuantity']=form.value.itemQuantity;
+    obj['itemBought']=false;
+    console.log(obj)
+    this.dataService.addShoppingItems(obj).subscribe(items=>{
+      console.log('Data added succussfully...:',items)
+      this.getItems()
+    })
+
   }
 
   getItems(){
