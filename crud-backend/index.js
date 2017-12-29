@@ -16,7 +16,6 @@ mongoose.connection.on('connected',()=>{
     console.log('MongoDB connected at post 27017');
 });
 
-
 //on connection error
 mongoose.connection.on('error',(err)=>{
     console.log('Mongodb connection error: ',err);
